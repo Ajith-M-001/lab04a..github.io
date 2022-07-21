@@ -1,0 +1,121 @@
+(function(){
+      if (typeof window.fcSettings === 'undefined') {
+        window.fcSettings = {};
+      }
+      window.fcSettings.token = 'a5ba29ce-37d5-4afe-93e3-a281833e1797';
+      window.fcSettings.host= 'https://wchat.in.freshchat.com';
+      window.fcSettings.onInit = function() {
+        window.fcWidget.on('widget:loaded', function() {
+          window.fcWidget.user.get().then(function(resp) {
+            var status = resp && resp.status,
+            data = resp && resp.data;
+            if (status === 200) {
+              if (data.restoreId) {
+                var url = '/admin/customers/'+window.fcSettings.customerId+'/metafields.json';
+                var jsonData = {
+                  'metafield': {
+                    'key': 'restoreId',
+                    'value': data.restoreId,
+                    'value_type': 'string',
+                    'namespace': 'freshchat'
+                  }
+                };
+                if(window.fcSettings.customerId){
+                  $.ajax({
+                    type: 'POST',
+                    url: url,
+                    dataType: 'json',
+                    crossDomain: true,
+                    contentType: 'application/json',
+                    headers: {
+                      'X-Shopify-Access-Token': window.fcSettings.shopify_token
+                    },
+                    data: JSON.stringify(jsonData),
+                    success: function(data){
+                      console.log('Restore id is updated successfully');
+                    },
+                    error: function(res){
+                      console.log(res);
+                    }
+                  });
+                }
+              }
+            }
+          }, function(err){
+            var status = err && err.status;
+            if((status === 401 || status === 403 || status === 404) && !window.fcSettings.restoreId && window.fcSettings.externalId){
+              window.fcWidget.user.create().then(function(resp){
+                var data = resp && resp.data;
+                if (data.restoreId) {
+                  var url = '/admin/customers/'+window.fcSettings.customerId+'/metafields.json';
+                  var jsonData = {
+                    'metafield': {
+                      'key': 'restoreId',
+                      'value': data.restoreId,
+                      'value_type': 'string',
+                      'namespace': 'freshchat'
+                    }
+                  };
+                  $.ajax({
+                    type: 'POST',
+                    url: url,
+                    crossDomain: true,
+                    headers: {
+                      'X-Shopify-Access-Token': window.fcSettings.shopify_token
+                    },
+                    data: JSON.stringify(jsonData),
+                    contentType: 'application/json',
+                    success: function(data){
+                      console.log('Restore id is updated successfully');
+                    },
+                    error: function(res){
+                      console.log(res);
+                    }
+                  });
+                }
+              },function(err){
+                console.log('User creation is failed', err);
+              })
+            }else if((status === 401 || status === 404 && status === 409) && window.fcSettings.restoreId && window.fcSettings.externalId){
+              window.fcSettings.restoreId = undefined;
+              window.fcWidget.user.create().then(function(resp){
+                var data = resp && resp.data;
+                if (data.restoreId) {
+                  var url = '/admin/customers/'+window.fcSettings.customerId+'/metafields.json';
+                  var jsonData = {
+                    'metafield': {
+                      'key': 'restoreId',
+                      'value': data.restoreId,
+                      'value_type': 'string',
+                      'namespace': 'freshchat'
+                    }
+                  };
+                  $.ajax({
+                    type: 'POST',
+                    url: url,
+                    crossDomain: true,
+                    headers: {
+                      'X-Shopify-Access-Token': window.fcSettings.shopify_token
+                    },
+                    data: JSON.stringify(jsonData),
+                    contentType: 'application/json',
+                    success: function(data){
+                      console.log('Restore id is updated successfully');
+                    },
+                    error: function(res){
+                      console.log(res);
+                    }
+                  });
+                }
+              },function(err){
+                console.log('User creation is failed', err);
+              })
+            }
+          });
+        });
+      };
+
+      var script = document.createElement('script');
+      script.src = 'https://wchat.in.freshchat.com/js/widget.js';
+      document.getElementsByTagName('head')[0].appendChild(script);
+    })();

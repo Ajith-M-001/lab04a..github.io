@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lab 4</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+
+    <header class="bg">
+
+        <nav class="main-nav">
+            <div>
+
+                My_Fruits
+            </div>
+
+            <ul>
+                <li><a href="#">home</a></li>
+                <li><a href="#">Fruits</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">review</a></li>
+                <li><a href="#">Order</a></li>
+            </ul>
+            <div>
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                <i class="fa-solid fa-heart"></i>
+
+                <i class="fa-solid fa-cart-shopping"></i>
+            </div>
+
+        </nav>
+
+        <div>
+            <h1>Welcome to Fruits Shop</h1>
+            <p>A premium selection of the finest fruits sourced <br> from the best farms across India.</p>
+            <button class="btn">Order Now</button>
+
+        </div>
+    </header>
+    <!-- <form method=" ">
+        <table>
+            <tr>
+                <td>
+                    <input type="checkbox" id="c1" value="59" onclick="apple()" /> Apple (59/-)
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <input type="checkbox" id="c2" value="49" onclick="orange()" /> Orange (49/-)
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <input type="checkbox" id="c3" value="39" onclick="banana()" /> Banana (39/-)
+                </td>
+            </tr>
+        </table>
+        <input type="submit" value="Submit" onclick="calculate()" />
+    </form> -->
+
+    <section>
+        <div class="card">
+            <input type="checkbox" id="c1" value="59" onclick="apple()">
+            <label for="c1">
+                <img src="img/apple-500x500-removebg-preview.png" alt="">
+                <div>
+                    <h1>Apple</h1>
+                    <p>Rs.59/-</p>
+                    <button class="btn1">ADD TO CART</button>
+                </div>
+
+            </label>
+
+        </div>
+
+
+        <div class="card">
+            <input type="checkbox" id="c2" value="49" onclick="orange()">
+            <label for="c2"> <img src="img/Orange-Fruit-Pieces-removebg-preview.png" alt="">
+                <div>
+                    <h1>Orange</h1>
+                    <p>Rs.49/-</p>
+                    <button class="btn1">ADD TO CART</button>
+                </div>
+            </label>
+
+
+        </div>
+
+
+        <div class="card">
+            <input type="checkbox" id="c3" value="39" onclick="bannana()">
+            <label for="c3">
+                <img id="c3" value="39" onclick="banana()" src="img/bannana-removebg-preview.png" alt="">
+                <div>
+
+                    <h1>Bannana</h1>
+                    <p>Rs.39/-</p>
+                    <button class="btn1">ADD TO CART</button>
+                </div>
+
+            </label>
+
+        </div>
+
+    </section>
+
+    <div class="submit">
+
+        <input class="btn2" type="submit" value="Submit" onclick="calculate()" />
+    </div>
+    <script src="js/script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,1 @@
+_omnisend.defaultCallback({"success":false,"statusCode":400,"error":"failed to get contact"});
